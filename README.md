@@ -1,0 +1,2 @@
+# Broadcast_ephemeris_solving
+使用urs.earthdata.nasa.gov提供GPS卫星广播星历，进行卫星位置及运动参数解算
