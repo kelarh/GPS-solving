@@ -1,7 +1,7 @@
 # 功能介绍
 使用python对GPS卫星广播星历，进行卫星位置及运动参数解算
 
-## 首先使用NASA提供的GPS卫星广播星历，[点击这里](urs.earthdata.nasa.gov)获取，并进行解读
+## 首先使用NASA提供的GPS卫星广播星历，[点击这里](https://urs.earthdata.nasa.gov/)获取，并进行解读
 
 
 以如下片段广播星历为例
