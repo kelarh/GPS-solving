@@ -1,4 +1,4 @@
-# 功能介绍
+# 准备资料
 基于python对GPS卫星广播星历，进行卫星位置及运动参数解算
 
 ## 首先使用NASA提供的GPS卫星广播星历，[点击这里](https://urs.earthdata.nasa.gov/)获取，并进行解读
@@ -20,7 +20,7 @@ pip install pandas numpy matplotlib
 ## 运行[main.py](main\main.py)，得到参数表格、解算坐标表格及轨迹图效果：
 ![](588901c82a92248df838642a87c11d5.png)
 ![](94fd25eedfdfd76d6bfaf5564f2494b.png)
-![](Figure.png)
-##  注：main.py中变量filename中输入广播星历文件路径，例：
-![](f4d16f4ad61f5a287f265c99fbab53e.png)
+![](Figure_3.png)
 ![](Figure_2.png)
+##  注：main.py中变量filename中更改路径以推广计算：
+![](f4d16f4ad61f5a287f265c99fbab53e.png)
