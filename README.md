@@ -11,13 +11,16 @@
 ![](4b6b18000944f0b1553206169a84f0e.png)
 
 之后参数命名以上为参考(仅使用IDOT前21个参数)
-## 实现方法
+# 实现方法
 确保Python环境已经激活，然后运行以下命令来安装：
 
 ```bash
 pip install pandas numpy matplotlib
 ```
-运行[main.py](main\main.py)，生成卫星参数表格及解算数据：![](588901c82a92248df838642a87c11d5.png)![](94fd25eedfdfd76d6bfaf5564f2494b.png)
-
-# 获取卫星坐标图
-运行[orbit.py](main\orbit.py)，生成卫星坐标图：![](Figure.png)
+## 运行[main.py](main\main.py)，得到参数表格、解算坐标表格及轨迹图效果：
+![](588901c82a92248df838642a87c11d5.png)
+![](94fd25eedfdfd76d6bfaf5564f2494b.png)
+![](Figure.png)
+##  注：main.py中变量filename中输入广播星历文件路径，例：
+![](f4d16f4ad61f5a287f265c99fbab53e.png)
+![](Figure_2.png)

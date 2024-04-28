@@ -3,9 +3,10 @@ from transform import convert_to_float as cf
 
 def calculate(df,i):
     # 常量和星历数据准备
-    radv = 7.2921151467e-5
+    radv = 72921151467e-5
     GM = 3.986005e14
     F = -4.442807633e-10
+    PRN = df['PRN'].iloc[i]
     toc = cf(df['toc'].iloc[i])
     a2 = cf(df['a2'].iloc[i])
     a1 = cf(df['a1'].iloc[i])
@@ -34,8 +35,8 @@ def calculate(df,i):
     # 计算卫星位置
     delt = t_ref - toc
     sat_Clk_error = a2*delt**2 + a1*delt + a0 - AODE
-    T = t_ref - sat_Clk_error 
-    tk = T - TOE
+    
+    tk = t_ref - TOE
     
     # 计算平近点角
     a = sqrtA**2
@@ -66,16 +67,16 @@ def calculate(df,i):
     delt_i = Cic * np.cos(2 * phi) + Cis * np.sin(2 * phi)
     u = phi + delt_u
     r = a * (1 - e * np.cos(E)) + delt_r
-    i = i0 + IDOT * tk + delt_i
+    i_1 = i0 + IDOT * tk + delt_i
     
     # 计算升交点赤经
     OMEGA = OMEGA + (OMEGA_DOT - radv) * tk - radv * TOE
     OMEGA = np.mod(OMEGA, 2 * np.pi)
     
     # 卫星坐标WGS-84
-    positionX = np.cos(u) * r * np.cos(OMEGA) - np.sin(u) * r * np.cos(i) * np.sin(OMEGA)
-    positionY = np.cos(u) * r * np.sin(OMEGA) + np.sin(u) * r * np.cos(i) * np.cos(OMEGA)
-    positionZ = np.sin(u) * r * np.sin(i)
+    positionX = np.cos(u) * r * np.cos(OMEGA) - np.sin(u) * r * np.cos(i_1) * np.sin(OMEGA)
+    positionY = np.cos(u) * r * np.sin(OMEGA) + np.sin(u) * r * np.cos(i_1) * np.cos(OMEGA)
+    positionZ = np.sin(u) * r * np.sin(i_1)
 
     # 计算卫星速度
     E_dot = n / (1 - e * np.cos(E))
@@ -94,9 +95,9 @@ def calculate(df,i):
     x = R_dot * np.cos(u) - r * U_dot * np.sin(u)
     y = R_dot * np.sin(u) + r * U_dot * np.cos(u)
 
-    Vx = -positionY * OMEGA_DOT - (y * np.cos(i) - positionZ * I_dot) * np.sin(OMEGA) + x * np.cos(OMEGA)
-    Vy = positionX * OMEGA_DOT + (y * np.cos(i) - positionZ * I_dot) * np.cos(OMEGA) + x * np.sin(OMEGA)
-    Vz = y * np.sin(i) + positionZ * I_dot * np.cos(i)
+    Vx = -positionY * OMEGA_DOT - (y * np.cos(i_1) - positionZ * I_dot) * np.sin(OMEGA) + x * np.cos(OMEGA)
+    Vy = positionX * OMEGA_DOT + (y * np.cos(i_1) - positionZ * I_dot) * np.cos(OMEGA) + x * np.sin(OMEGA)
+    Vz = y * np.sin(i_1) + positionZ * I_dot * np.cos(i_1)
 
     # 计算卫星钟偏
     delt = t_ref - toc
@@ -104,4 +105,4 @@ def calculate(df,i):
     sat_Clk_error = a2 * delt**2 + a1 * delt + a0  + dtr- AODE
 
     # 返回结果
-    return [positionX , positionY, positionZ, Vx, Vy, Vz, sat_Clk_error]
+    return [PRN, positionX , positionY, positionZ, Vx, Vy, Vz, sat_Clk_error]
