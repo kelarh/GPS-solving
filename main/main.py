@@ -11,4 +11,4 @@ n = 11
 
 read(a,b,c,d,n)
 # 提取后的单颗卫星坐标进行绘图
-draw(d)
+draw(c)
