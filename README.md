@@ -17,7 +17,7 @@
 ```bash
 pip install pandas numpy matplotlib
 ```
-## 运行[main.py](main\main.py)，得到参数表格、解算坐标表格及轨迹图效果：
+## 运行[main.py](main/main.py)，得到参数表格、解算坐标表格及轨迹图效果：
 ![](588901c82a92248df838642a87c11d5.png)
 ![](94fd25eedfdfd76d6bfaf5564f2494b.png)
 ![](Figure_3.png)
